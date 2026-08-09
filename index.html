@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Finder — The AI Tool Catalog</title>
+<title>INDEX — The AI Tool Catalog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -84,3 +84,278 @@
   .search-wrap{
     display:flex; align-items:center; gap:0;
     background:var(--card);
+    border:1.5px solid var(--ink);
+    border-radius:10px;
+    padding:4px;
+    max-width:560px;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .search-wrap input{
+    flex:1; border:none; outline:none; background:transparent;
+    padding:12px 14px; font-size:1rem; font-family:'IBM Plex Sans', sans-serif;
+    color:var(--ink);
+  }
+  .search-wrap input::placeholder{ color:#9AA0AC; }
+  .search-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--slate);
+    padding:0 14px;
+    white-space:nowrap;
+  }
+
+  .chips{
+    max-width:1120px; margin:0 auto;
+    padding:0 24px 8px;
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    padding:8px 14px;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    background:var(--card);
+    cursor:pointer;
+    transition:border-color .15s, background .15s, color .15s;
+    user-select:none;
+  }
+  .chip:hover{ border-color:var(--ink); }
+  .chip:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .chip.active{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+
+  main{ max-width:1120px; margin:0 auto; padding:32px 24px 96px; }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px;
+    display:flex; flex-direction:column; gap:10px;
+    opacity:0; transform:translateY(10px);
+    animation:rise .5s ease forwards;
+    transition:border-color .18s, transform .18s, box-shadow .18s;
+  }
+  .card:hover{
+    border-color:var(--ink);
+    transform:translateY(-3px);
+    box-shadow:3px 3px 0 var(--line);
+  }
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce){
+    .card{ animation:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+  .catalog-id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--accent-dim);
+    letter-spacing:0.03em;
+  }
+  .badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    background:var(--amber);
+    color:var(--ink);
+    padding:3px 8px;
+    border-radius:5px;
+  }
+  .card h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.15rem;
+    margin:0;
+  }
+  .card p.desc{
+    color:var(--slate);
+    font-size:0.9rem;
+    line-height:1.45;
+    margin:0;
+    min-height:2.6em;
+  }
+  .card-meta{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:auto; padding-top:6px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--slate);
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:6px;
+  }
+  .stars{ font-size:0.85rem; color:var(--amber); letter-spacing:1px; }
+  .visit{
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-top:6px;
+    background:var(--ink); color:var(--paper);
+    text-decoration:none;
+    font-size:0.85rem; font-weight:500;
+    padding:9px 0;
+    border-radius:7px;
+    transition:background .15s;
+  }
+  .visit:hover, .visit:focus-visible{ background:var(--accent); }
+  .visit:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+
+  .empty{
+    text-align:center; padding:64px 20px; color:var(--slate);
+    font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 24px 48px;
+  }
+  .footer-inner{
+    max-width:1120px; margin:0 auto;
+    display:flex; flex-wrap:wrap; gap:12px;
+    justify-content:space-between; align-items:center;
+    color:var(--slate); font-size:0.82rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><span class="dot"></span>INDEX</div>
+    <nav>
+      <a href="#catalog">Catalog</a>
+      <a href="#submit">Submit a tool</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">The AI tool catalog</div>
+  <h1>Find the right AI tool without the guesswork.</h1>
+  <p>A running index of AI tools across writing, image, video, audio, code and more — searchable, filterable, and updated as new ones ship.</p>
+  <div class="search-wrap">
+    <input id="search" type="text" placeholder="Search tools, categories, or tasks…" autocomplete="off">
+    <span class="search-count" id="count"></span>
+  </div>
+</section>
+
+<div class="chips" id="chips"></div>
+
+<main id="catalog">
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none;">No entries match — try another search term.</div>
+</main>
+
+<footer id="about">
+  <div class="footer-inner">
+    <span>© 2026 INDEX. A catalog of AI tools, built for people who don't want to guess.</span>
+    <span id="submit">Entries marked <strong>Featured</strong> are sponsored placements.</span>
+  </div>
+</footer>
+
+<script>
+const TOOLS = [
+  {id:"AI·001", name:"ChatGPT", cat:"Assistant", desc:"General-purpose AI chat assistant for writing, research, coding and more.", rating:5, featured:false, url:"https://chat.openai.com"},
+  {id:"AI·002", name:"Claude", cat:"Assistant", desc:"Conversational AI assistant from Anthropic, strong at writing and reasoning.", rating:5, featured:false, url:"https://claude.ai"},
+  {id:"AI·003", name:"Gemini", cat:"Assistant", desc:"Google's AI assistant, integrated with Search, Docs and Gmail.", rating:4, featured:false, url:"https://gemini.google.com"},
+  {id:"AI·004", name:"Perplexity", cat:"Assistant", desc:"AI answer engine that searches the web and cites its sources.", rating:4, featured:false, url:"https://www.perplexity.ai"},
+  {id:"AI·005", name:"Jasper", cat:"Writing", desc:"AI writing platform built for marketing teams and brand-voice content.", rating:4, featured:false, url:"https://www.jasper.ai"},
+  {id:"AI·006", name:"Copy.ai", cat:"Writing", desc:"AI copywriting tool for ads, product descriptions and marketing emails.", rating:3, featured:false, url:"https://www.copy.ai"},
+  {id:"AI·007", name:"Grammarly", cat:"Writing", desc:"AI-powered grammar, tone and clarity checker for everyday writing.", rating:4, featured:false, url:"https://www.grammarly.com"},
+  {id:"AI·008", name:"Midjourney", cat:"Image", desc:"Text-to-image generator known for high-fidelity, artistic output.", rating:5, featured:false, url:"https://www.midjourney.com"},
+  {id:"AI·009", name:"Adobe Firefly", cat:"Image", desc:"Adobe's generative image and design tool, integrated with Photoshop.", rating:4, featured:false, url:"https://www.adobe.com/products/firefly.html"},
+  {id:"AI·010", name:"Ideogram", cat:"Image", desc:"Text-to-image model with strong, legible in-image text rendering.", rating:4, featured:false, url:"https://ideogram.ai"},
+  {id:"AI·011", name:"Runway", cat:"Video", desc:"AI video generation and editing suite, from text or image prompts.", rating:4, featured:false, url:"https://runwayml.com"},
+  {id:"AI·012", name:"Synthesia", cat:"Video", desc:"Turns scripts into videos with AI avatars speaking in many languages.", rating:4, featured:false, url:"https://www.synthesia.io"},
+  {id:"AI·013", name:"HeyGen", cat:"Video", desc:"AI avatar video generator for marketing, training and localization.", rating:4, featured:false, url:"https://www.heygen.com"},
+  {id:"AI·014", name:"ElevenLabs", cat:"Audio", desc:"Realistic AI voice generation and cloning for narration and dubbing.", rating:5, featured:false, url:"https://elevenlabs.io"},
+  {id:"AI·015", name:"Suno", cat:"Audio", desc:"Generates full songs, vocals and instrumentals from a text prompt.", rating:4, featured:false, url:"https://suno.com"},
+  {id:"AI·016", name:"Descript", cat:"Audio", desc:"Edits audio and video by editing a text transcript directly.", rating:4, featured:false, url:"https://www.descript.com"},
+  {id:"AI·017", name:"GitHub Copilot", cat:"Code", desc:"AI pair programmer that autocompletes and explains code in-editor.", rating:5, featured:false, url:"https://github.com/features/copilot"},
+  {id:"AI·018", name:"Cursor", cat:"Code", desc:"AI-native code editor built around chat, edits and codebase context.", rating:5, featured:false, url:"https://www.cursor.com"},
+  {id:"AI·019", name:"Replit", cat:"Code", desc:"Browser-based coding environment with an AI agent that builds apps.", rating:4, featured:false, url:"https://replit.com"},
+  {id:"AI·020", name:"Notion AI", cat:"Productivity", desc:"Writing and summarizing assistant built directly into Notion docs.", rating:4, featured:false, url:"https://www.notion.com/product/ai"},
+  {id:"AI·021", name:"Otter.ai", cat:"Productivity", desc:"Real-time meeting transcription with automatic summaries and action items.", rating:4, featured:false, url:"https://otter.ai"},
+  {id:"AI·022", name:"Canva Magic Studio", cat:"Design", desc:"AI design tools inside Canva: image generation, backgrounds, and layouts.", rating:4, featured:false, url:"https://www.canva.com/magic-studio"},
+  {id:"AI·023", name:"Figma AI", cat:"Design", desc:"AI features inside Figma for generating and editing UI designs.", rating:3, featured:false, url:"https://www.figma.com"},
+  {id:"AI·024", name:"Uizard", cat:"Design", desc:"Turns text prompts or sketches into editable app and web mockups.", rating:3, featured:false, url:"https://uizard.io"},
+];
+
+const grid = document.getElementById('grid');
+const chipsEl = document.getElementById('chips');
+const searchEl = document.getElementById('search');
+const countEl = document.getElementById('count');
+const emptyEl = document.getElementById('empty');
+
+let activeCat = 'All';
+
+function stars(n){
+  return '★'.repeat(n) + '☆'.repeat(5-n);
+}
+
+function render(){
+  const q = searchEl.value.trim().toLowerCase();
+  const filtered = TOOLS.filter(t=>{
+    const matchesCat = activeCat === 'All' || t.cat === activeCat;
+    const matchesQ = !q || (t.name+' '+t.desc+' '+t.cat).toLowerCase().includes(q);
+    return matchesCat && matchesQ;
+  });
+
+  grid.innerHTML = '';
+  filtered.forEach((t, i)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = (i*0.03)+'s';
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="catalog-id">${t.id}</span>
+        ${t.featured ? '<span class="badge">Featured</span>' : ''}
+      </div>
+      <h3>${t.name}</h3>
+      <p class="desc">${t.desc}</p>
+      <div class="card-meta">
+        <span class="tag">${t.cat}</span>
+        <span class="stars">${stars(t.rating)}</span>
+      </div>
+      <a class="visit" href="${t.url}" target="_blank" rel="noopener">Visit tool →</a>
+    `;
+    grid.appendChild(card);
+  });
+
+  emptyEl.style.display = filtered.length ? 'none' : 'block';
+  countEl.textContent = filtered.length + ' / ' + TOOLS.length;
+}
+
+function buildChips(){
+  const cats = ['All', ...new Set(TOOLS.map(t=>t.cat))];
+  chipsEl.innerHTML = '';
+  cats.forEach(c=>{
+    const chip = document.createElement('button');
+    chip.className = 'chip' + (c===activeCat ? ' active':'');
+    chip.textContent = c;
+    chip.addEventListener('click', ()=>{
+      activeCat = c;
+      [...chipsEl.children].forEach(ch=>ch.classList.remove('active'));
+      chip.classList.add('active');
+      render();
+    });
+    chipsEl.appendChild(chip);
+  });
+}
+
+searchEl.addEventListener('input', render);
+buildChips();
+render();
+</script>
+
+</body>
+</html>
