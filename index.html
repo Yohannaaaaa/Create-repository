@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Finder — The AI Tool Catalog</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237C3AED'/%3E%3Ctext x='32' y='43' font-family='Arial, sans-serif' font-weight='700' font-size='26' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -127,6 +128,44 @@
     margin:0 0 32px;
   }
 
+  .hero-visual{
+    position:absolute; top:20px; right:24px;
+    width:280px; height:320px;
+    pointer-events:none;
+    perspective:900px;
+  }
+  @media (max-width:980px){ .hero-visual{ display:none; } }
+  .mini-card{
+    position:absolute; width:220px;
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:14px; display:flex; align-items:center; gap:10px;
+    box-shadow:0 20px 36px rgba(20,23,31,.20);
+    transform-style:preserve-3d;
+  }
+  :root[data-theme="dark"] .mini-card{ box-shadow:0 20px 36px rgba(0,0,0,.5); }
+  .mini-card.mc-1{ top:0; right:30px; animation:float1 6s ease-in-out infinite; }
+  .mini-card.mc-2{ top:120px; right:-10px; animation:float2 7s ease-in-out infinite; }
+  .mini-card.mc-3{ top:236px; right:50px; animation:float3 8s ease-in-out infinite; }
+  .mini-lines{ display:flex; flex-direction:column; gap:6px; flex:1; }
+  .mini-lines span{ display:block; height:6px; border-radius:3px; background:var(--line); }
+  .mini-lines span:first-child{ width:80%; }
+  .mini-lines span:last-child{ width:55%; }
+  @keyframes float1{
+    0%,100%{ transform:rotateX(8deg) rotateY(-20deg) rotateZ(-4deg) translateZ(20px) translateY(0); }
+    50%{ transform:rotateX(8deg) rotateY(-20deg) rotateZ(-4deg) translateZ(20px) translateY(-12px); }
+  }
+  @keyframes float2{
+    0%,100%{ transform:rotateX(-8deg) rotateY(16deg) rotateZ(3deg) translateZ(40px) translateY(0); }
+    50%{ transform:rotateX(-8deg) rotateY(16deg) rotateZ(3deg) translateZ(40px) translateY(-9px); }
+  }
+  @keyframes float3{
+    0%,100%{ transform:rotateX(10deg) rotateY(-12deg) rotateZ(-2deg) translateZ(10px) translateY(0); }
+    50%{ transform:rotateX(10deg) rotateY(-12deg) rotateZ(-2deg) translateZ(10px) translateY(-14px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .mini-card{ animation:none !important; transform:none !important; }
+  }
+
   .search-wrap{
     display:flex; align-items:center; gap:0;
     background:var(--card);
@@ -152,7 +191,7 @@
 
   .controls{
     display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-    max-width:560px; margin-top:14px;
+    max-width:640px; margin-top:14px;
   }
   .controls select{
     font-family:'IBM Plex Mono', monospace;
@@ -164,6 +203,17 @@
     color:var(--ink);
     cursor:pointer;
   }
+  .view-toggle{
+    display:flex; border:1.5px solid var(--line); border-radius:8px; overflow:hidden;
+    margin-left:auto;
+  }
+  .view-btn{
+    background:var(--card); border:none; color:var(--slate);
+    padding:8px 13px; cursor:pointer; font-size:0.95rem; line-height:1;
+  }
+  .view-btn + .view-btn{ border-left:1px solid var(--line); }
+  .view-btn.active{ background:var(--ink); color:var(--paper); }
+  .view-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
 
   .chips{
     max-width:1120px; margin:0 auto;
@@ -197,21 +247,22 @@
   .card{
     background:var(--card);
     border:1px solid var(--line);
+    border-left:4px solid var(--cat-color, var(--line));
     border-radius:12px;
     padding:20px;
     display:flex; flex-direction:column; gap:10px;
-    opacity:0; transform:translateY(10px);
-    animation:rise .5s ease forwards;
-    transition:border-color .18s, transform .18s, box-shadow .18s;
+    opacity:1;
+    transform-style:preserve-3d;
+    transition:opacity .4s ease, transform .25s ease, border-color .18s, box-shadow .18s;
   }
+  .card.card-enter{ opacity:0; transform:translateY(10px); }
   .card:hover{
     border-color:var(--ink);
-    transform:translateY(-3px);
     box-shadow:3px 3px 0 var(--line);
   }
-  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+  .grid{ perspective:1200px; }
   @media (prefers-reduced-motion: reduce){
-    .card{ animation:none; opacity:1; transform:none; }
+    .card{ transition:border-color .18s, box-shadow .18s; }
     html{ scroll-behavior:auto; }
   }
 
@@ -238,6 +289,16 @@
     font-size:1.15rem; line-height:1; padding:2px; color:var(--accent);
   }
   .fav-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }
+  .title-row{ display:flex; align-items:center; gap:10px; }
+  .avatar{
+    width:34px; height:34px; border-radius:9px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:0.95rem;
+    color:#fff;
+    background:color-mix(in srgb, var(--cat-color, var(--slate)) 82%, black);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35), 0 3px 6px rgba(20,23,31,.28);
+  }
+  .avatar-sm{ width:26px; height:26px; border-radius:7px; font-size:0.76rem; }
   .card h3{
     font-family:'Space Grotesk', sans-serif;
     font-size:1.15rem;
@@ -266,6 +327,11 @@
   .tag.price-free{ color:#2E7D32; }
   .tag.price-freemium{ color:var(--accent-dim); }
   .tag.price-paid{ color:#B45309; }
+  .tag.cat-tag{
+    color:var(--cat-color, var(--slate));
+    border-color:color-mix(in srgb, var(--cat-color, var(--line)) 45%, transparent);
+    background:color-mix(in srgb, var(--cat-color, var(--line)) 14%, var(--card));
+  }
   .stars{ font-size:0.85rem; color:var(--amber); letter-spacing:1px; }
   .visit{
     display:inline-flex; align-items:center; justify-content:center;
@@ -284,6 +350,28 @@
     text-align:center; padding:64px 20px; color:var(--slate);
     font-family:'IBM Plex Mono', monospace; font-size:0.9rem;
   }
+
+  .table-wrap{
+    overflow-x:auto;
+    border:1px solid var(--line); border-radius:12px;
+    background:var(--card);
+  }
+  .tool-table{ width:100%; border-collapse:collapse; font-size:0.88rem; }
+  .tool-table th{
+    text-align:left; white-space:nowrap;
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:.04em; color:var(--slate);
+    padding:12px 14px; border-bottom:1px solid var(--line);
+  }
+  .tool-table td{ padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:middle; white-space:nowrap; }
+  .tool-table tr:last-child td{ border-bottom:none; }
+  .tool-table tr td{ transition:background .12s; }
+  .tool-table tr:hover td{ background:color-mix(in srgb, var(--cat-color, var(--line)) 10%, transparent); }
+  .table-name{
+    display:flex; align-items:center; gap:10px;
+    font-weight:600; font-family:'Space Grotesk', sans-serif;
+  }
+  .visit-sm{ padding:6px 16px; margin-top:0; display:inline-flex; }
 
   footer{
     border-top:1px solid var(--line);
@@ -384,6 +472,15 @@
       <option value="price">Price (Free first)</option>
     </select>
     <button class="chip" id="favFilter" type="button">♥ Favorites</button>
+    <div class="view-toggle" role="group" aria-label="View mode">
+      <button class="view-btn active" id="viewGridBtn" type="button" data-view="grid" aria-label="Grid view">▦</button>
+      <button class="view-btn" id="viewTableBtn" type="button" data-view="table" aria-label="Table view">☰</button>
+    </div>
+  </div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="mini-card mc-1"><span class="avatar avatar-sm" style="--cat-color:#6D5DFC">C</span><div class="mini-lines"><span></span><span></span></div></div>
+    <div class="mini-card mc-2"><span class="avatar avatar-sm" style="--cat-color:#FF922B">M</span><div class="mini-lines"><span></span><span></span></div></div>
+    <div class="mini-card mc-3"><span class="avatar avatar-sm" style="--cat-color:#12B886">S</span><div class="mini-lines"><span></span><span></span></div></div>
   </div>
 </section>
 
@@ -391,6 +488,14 @@
 
 <main id="catalog">
   <div class="grid" id="grid"></div>
+  <div class="table-wrap" id="tableWrap" style="display:none;">
+    <table class="tool-table">
+      <thead>
+        <tr><th></th><th>Tool</th><th>Category</th><th>Price</th><th>Rating</th><th></th></tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
   <div class="empty" id="empty" style="display:none;"></div>
 </main>
 
@@ -464,23 +569,52 @@ const TOOLS = [
   {id:"AI·031", name:"Devin", cat:"Agent", desc:"AI software engineer that plans and executes coding tasks autonomously.", rating:4, featured:false, url:"https://devin.ai", price:"Paid"},
 ];
 
+const CAT_COLORS = {
+  Assistant:"#6D5DFC", Writing:"#F06595", Image:"#FF922B", Video:"#FA5252",
+  Audio:"#15AABF", Code:"#40C057", Productivity:"#F5B400", Design:"#BE4BDB",
+  "3D":"#4C6EF5", Music:"#12B886", Agent:"#868E96",
+};
+
 const grid = document.getElementById('grid');
+const tableWrap = document.getElementById('tableWrap');
+const tableBody = document.getElementById('tableBody');
 const chipsEl = document.getElementById('chips');
 const searchEl = document.getElementById('search');
 const countEl = document.getElementById('count');
 const emptyEl = document.getElementById('empty');
 const sortSelect = document.getElementById('sortSelect');
 const favFilterBtn = document.getElementById('favFilter');
+const viewGridBtn = document.getElementById('viewGridBtn');
+const viewTableBtn = document.getElementById('viewTableBtn');
 const themeToggleBtn = document.getElementById('themeToggle');
 const toastEl = document.getElementById('toast');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let activeCat = 'All';
 let showFavoritesOnly = false;
+let viewMode = 'grid';
 let favorites = JSON.parse(localStorage.getItem('aiFinderFavorites') || '[]');
 let toastTimer = null;
 
 function stars(n){
   return '★'.repeat(n) + '☆'.repeat(5-n);
+}
+
+function catColor(cat){
+  return CAT_COLORS[cat] || '#6B7280';
+}
+
+function attachTilt(card){
+  if(prefersReducedMotion) return;
+  card.addEventListener('mousemove', (e)=>{
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    const rotateX = (0.5 - y) * 12;
+    const rotateY = (x - 0.5) * 12;
+    card.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', ()=>{ card.style.transform = ''; });
 }
 
 function toggleFavorite(id){
@@ -515,12 +649,17 @@ function render(){
     filtered = [...filtered].sort((a,b)=>order[a.price]-order[b.price]);
   }
 
+  grid.style.display = viewMode === 'grid' ? '' : 'none';
+  tableWrap.style.display = viewMode === 'table' ? '' : 'none';
+
   grid.innerHTML = '';
   filtered.forEach((t, i)=>{
     const isFav = favorites.includes(t.id);
+    const color = catColor(t.cat);
+    const initial = t.name.trim().charAt(0).toUpperCase();
     const card = document.createElement('div');
-    card.className = 'card';
-    card.style.animationDelay = (i*0.03)+'s';
+    card.className = prefersReducedMotion ? 'card' : 'card card-enter';
+    card.style.setProperty('--cat-color', color);
     card.innerHTML = `
       <div class="card-top">
         <span class="catalog-id">${t.id}</span>
@@ -529,11 +668,14 @@ function render(){
           <button class="fav-btn" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" aria-pressed="${isFav}">${isFav ? '♥' : '♡'}</button>
         </div>
       </div>
-      <h3>${t.name}</h3>
+      <div class="title-row">
+        <span class="avatar">${initial}</span>
+        <h3>${t.name}</h3>
+      </div>
       <p class="desc">${t.desc}</p>
       <div class="card-meta">
         <div class="tag-group">
-          <span class="tag">${t.cat}</span>
+          <span class="tag cat-tag">${t.cat}</span>
           <span class="tag price-${t.price.toLowerCase()}">${t.price}</span>
         </div>
         <span class="stars">${stars(t.rating)}</span>
@@ -541,11 +683,39 @@ function render(){
       <a class="visit" href="${t.url}" target="_blank" rel="noopener">Visit tool →</a>
     `;
     card.querySelector('.fav-btn').addEventListener('click', ()=> toggleFavorite(t.id));
+    attachTilt(card);
     grid.appendChild(card);
+    if(!prefersReducedMotion){
+      setTimeout(()=> card.classList.remove('card-enter'), 20 + i*30);
+    }
   });
 
-  emptyEl.style.display = filtered.length ? 'none' : 'block';
-  emptyEl.textContent = showFavoritesOnly && filtered.length === 0
+  tableBody.innerHTML = filtered.map(t=>{
+    const isFav = favorites.includes(t.id);
+    const color = catColor(t.cat);
+    const initial = t.name.trim().charAt(0).toUpperCase();
+    return `
+      <tr style="--cat-color:${color}">
+        <td><button class="fav-btn" data-id="${t.id}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" aria-pressed="${isFav}">${isFav ? '♥' : '♡'}</button></td>
+        <td><div class="table-name"><span class="avatar avatar-sm">${initial}</span>${t.name}</div></td>
+        <td><span class="tag cat-tag">${t.cat}</span></td>
+        <td><span class="tag price-${t.price.toLowerCase()}">${t.price}</span></td>
+        <td class="stars">${stars(t.rating)}</td>
+        <td><a class="visit visit-sm" href="${t.url}" target="_blank" rel="noopener">Visit →</a></td>
+      </tr>
+    `;
+  }).join('');
+  tableBody.querySelectorAll('.fav-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=> toggleFavorite(btn.dataset.id));
+  });
+
+  const isEmpty = filtered.length === 0;
+  emptyEl.style.display = isEmpty ? 'block' : 'none';
+  if(isEmpty){
+    grid.style.display = 'none';
+    tableWrap.style.display = 'none';
+  }
+  emptyEl.textContent = showFavoritesOnly && isEmpty
     ? "You haven't favorited any tools yet."
     : 'No entries match — try another search term.';
   countEl.textContent = filtered.length + ' / ' + TOOLS.length;
@@ -577,13 +747,21 @@ favFilterBtn.addEventListener('click', ()=>{
   render();
 });
 
+[viewGridBtn, viewTableBtn].forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    viewMode = btn.dataset.view;
+    viewGridBtn.classList.toggle('active', viewMode === 'grid');
+    viewTableBtn.classList.toggle('active', viewMode === 'table');
+    render();
+  });
+});
+
 buildChips();
 render();
 
-// Theme
+// Theme (defaults to dark)
 const savedTheme = localStorage.getItem('aiFinderTheme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-let theme = savedTheme || (prefersDark ? 'dark' : 'light');
+let theme = savedTheme || 'dark';
 
 function applyTheme(t){
   document.documentElement.setAttribute('data-theme', t);
