@@ -327,6 +327,8 @@
   .tag.price-free{ color:#2E7D32; }
   .tag.price-freemium{ color:var(--accent-dim); }
   .tag.price-paid{ color:#B45309; }
+  :root[data-theme="dark"] .tag.price-free{ color:#69DB7C; }
+  :root[data-theme="dark"] .tag.price-paid{ color:#FFA94D; }
   .tag.cat-tag{
     color:var(--cat-color, var(--slate));
     border-color:color-mix(in srgb, var(--cat-color, var(--line)) 45%, transparent);
@@ -568,12 +570,30 @@ const TOOLS = [
   {id:"AI·029", name:"AutoGPT", cat:"Agent", desc:"Open-source autonomous agent that chains tasks toward a goal.", rating:3, featured:false, url:"https://github.com/Significant-Gravitas/AutoGPT", price:"Free"},
   {id:"AI·030", name:"Zapier AI", cat:"Agent", desc:"AI-powered automation that connects apps and triggers workflows.", rating:4, featured:false, url:"https://zapier.com/ai", price:"Freemium"},
   {id:"AI·031", name:"Devin", cat:"Agent", desc:"AI software engineer that plans and executes coding tasks autonomously.", rating:4, featured:false, url:"https://devin.ai", price:"Paid"},
+  {id:"AI·032", name:"Grok", cat:"Assistant", desc:"xAI's conversational assistant with real-time access to X and fast responses.", rating:4, featured:false, url:"https://grok.x.ai", price:"Freemium"},
+  {id:"AI·033", name:"Meta AI", cat:"Assistant", desc:"Meta's AI assistant built into WhatsApp, Instagram and Facebook.", rating:3, featured:false, url:"https://www.meta.ai", price:"Free"},
+  {id:"AI·034", name:"Writesonic", cat:"Writing", desc:"AI content generator for blog posts, ads and SEO-optimized articles.", rating:3, featured:false, url:"https://writesonic.com", price:"Freemium"},
+  {id:"AI·035", name:"QuillBot", cat:"Writing", desc:"AI paraphrasing, grammar and summarizing tool for clearer writing.", rating:3, featured:false, url:"https://quillbot.com", price:"Freemium"},
+  {id:"AI·036", name:"DALL·E 3", cat:"Image", desc:"OpenAI's text-to-image model, integrated directly into ChatGPT.", rating:4, featured:false, url:"https://openai.com/dall-e-3", price:"Paid"},
+  {id:"AI·037", name:"Leonardo AI", cat:"Image", desc:"Text-to-image generator popular for game art and concept design.", rating:4, featured:false, url:"https://leonardo.ai", price:"Freemium"},
+  {id:"AI·038", name:"Stable Diffusion", cat:"Image", desc:"Open-source text-to-image model that can run locally or in the cloud.", rating:4, featured:false, url:"https://stability.ai", price:"Free"},
+  {id:"AI·039", name:"Kling AI", cat:"Video", desc:"Text-to-video model known for realistic motion and longer clips.", rating:4, featured:false, url:"https://klingai.com", price:"Freemium"},
+  {id:"AI·040", name:"Pika", cat:"Video", desc:"AI video generator for quick text-to-video and image-to-video clips.", rating:3, featured:false, url:"https://pika.art", price:"Freemium"},
+  {id:"AI·041", name:"Murf AI", cat:"Audio", desc:"Text-to-speech studio with lifelike voiceovers for videos and presentations.", rating:4, featured:false, url:"https://murf.ai", price:"Freemium"},
+  {id:"AI·042", name:"Windsurf", cat:"Code", desc:"AI-native code editor built around agentic, multi-file coding flows.", rating:4, featured:false, url:"https://windsurf.com", price:"Freemium"},
+  {id:"AI·043", name:"Bolt.new", cat:"Code", desc:"Prompts full-stack web apps into existence directly in the browser.", rating:4, featured:false, url:"https://bolt.new", price:"Freemium"},
+  {id:"AI·044", name:"Reclaim AI", cat:"Productivity", desc:"AI scheduling assistant that auto-blocks time for tasks and habits.", rating:4, featured:false, url:"https://reclaim.ai", price:"Freemium"},
+  {id:"AI·045", name:"Framer AI", cat:"Design", desc:"Generates full, responsive websites from a single text prompt.", rating:4, featured:false, url:"https://www.framer.com/ai", price:"Freemium"},
+  {id:"AI·046", name:"Meshy", cat:"3D", desc:"Text-to-3D and image-to-3D generator for game-ready assets.", rating:4, featured:false, url:"https://www.meshy.ai", price:"Freemium"},
+  {id:"AI·047", name:"Udio", cat:"Music", desc:"AI music generator that creates full songs with vocals from a prompt.", rating:4, featured:false, url:"https://www.udio.com", price:"Freemium"},
+  {id:"AI·048", name:"Manus", cat:"Agent", desc:"General-purpose autonomous agent that plans and completes multi-step tasks.", rating:4, featured:false, url:"https://manus.im", price:"Paid"},
+  {id:"AI·049", name:"DeepL", cat:"Translation", desc:"AI translator known for fluent, natural-sounding translations.", rating:5, featured:false, url:"https://www.deepl.com", price:"Freemium"},
 ];
 
 const CAT_COLORS = {
   Assistant:"#6D5DFC", Writing:"#F06595", Image:"#FF922B", Video:"#FA5252",
   Audio:"#15AABF", Code:"#40C057", Productivity:"#F5B400", Design:"#BE4BDB",
-  "3D":"#4C6EF5", Music:"#12B886", Agent:"#868E96",
+  "3D":"#4C6EF5", Music:"#12B886", Agent:"#868E96", Translation:"#0B7285",
 };
 
 const grid = document.getElementById('grid');
