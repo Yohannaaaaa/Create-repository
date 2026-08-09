@@ -616,19 +616,19 @@
     <button class="modal-close" id="closeFeatured" aria-label="Close">×</button>
     <h2 data-i18n="featuredTitle">Get Featured</h2>
     <p class="sub" data-i18n="featuredSub">Put your tool at the top of the catalog with a Featured badge and priority placement.</p>
-    <div class="plans">
-      <label class="plan">
-        <input type="radio" name="plan" value="Monthly — $49/mo" checked>
-        <span class="plan-name" data-i18n="planMonthlyName">Monthly</span>
-        <span class="plan-price">$49<small data-i18n="planPerMonth">/mo</small></span>
-      </label>
-      <label class="plan">
-        <input type="radio" name="plan" value="3 months — $99 one-time">
-        <span class="plan-name" data-i18n="planQuarterName">3 months</span>
-        <span class="plan-price">$99<small data-i18n="planOneTime"> one-time</small></span>
-      </label>
-    </div>
     <form id="featuredForm">
+      <div class="plans">
+        <label class="plan">
+          <input type="radio" name="plan" value="Monthly — $49/mo" data-amount="49" data-item="AI Finder Featured Placement (Monthly)" checked>
+          <span class="plan-name" data-i18n="planMonthlyName">Monthly</span>
+          <span class="plan-price">$49<small data-i18n="planPerMonth">/mo</small></span>
+        </label>
+        <label class="plan">
+          <input type="radio" name="plan" value="3 months — $99 one-time" data-amount="99" data-item="AI Finder Featured Placement (3 months)">
+          <span class="plan-name" data-i18n="planQuarterName">3 months</span>
+          <span class="plan-price">$99<small data-i18n="planOneTime"> one-time</small></span>
+        </label>
+      </div>
       <label><span data-i18n="modalName">Tool name</span>
         <input required name="name" type="text" maxlength="60">
       </label>
@@ -677,8 +677,8 @@ const I18N = {
     featuredTitle:"Get Featured", featuredSub:"Put your tool at the top of the catalog with a Featured badge and priority placement.",
     planMonthlyName:"Monthly", planPerMonth:"/mo", planQuarterName:"3 months", planOneTime:" one-time",
     featuredEmail:"Contact email", featuredSubmit:"Request Featured placement",
-    featuredFinePrint:"We'll email you a payment link to confirm — no card details are collected here.",
-    featuredToastMsg:"Thanks! We'll email you a payment link to confirm your Featured placement.",
+    featuredFinePrint:"You'll be redirected to PayPal to complete payment — no card details are collected on this page.",
+    featuredToastMsg:"Thanks! Complete your payment in the PayPal tab that just opened.",
     quickStartLabel:"Not sure where to start? Try:", featuresLabel:"Filter by feature:",
     qsWrite:"Write content", qsImage:"Generate images", qsVideo:"Edit video", qsCode:"Write code",
     qsAutomate:"Automate tasks", qsTranslate:"Translate text", qsMusic:"Make music", qsChat:"Chat & ask questions",
@@ -711,8 +711,8 @@ const I18N = {
     featuredTitle:"Öne Çık", featuredSub:"Aracını Featured rozetiyle kataloğun en üstüne, öncelikli konuma taşı.",
     planMonthlyName:"Aylık", planPerMonth:"/ay", planQuarterName:"3 ay", planOneTime:" tek seferlik",
     featuredEmail:"İletişim e-postası", featuredSubmit:"Featured yerleşim talep et",
-    featuredFinePrint:"Onay için sana bir ödeme linki e-postalayacağız — burada kart bilgisi alınmaz.",
-    featuredToastMsg:"Teşekkürler! Featured yerleşimini onaylamak için sana bir ödeme linki e-postalayacağız.",
+    featuredFinePrint:"Ödemeyi tamamlaman için PayPal'a yönlendirileceksin — bu sayfada kart bilgisi alınmaz.",
+    featuredToastMsg:"Teşekkürler! Az önce açılan PayPal sekmesinden ödemeni tamamlayabilirsin.",
     quickStartLabel:"Nereden başlayacağını bilmiyor musun? Dene:", featuresLabel:"Özelliğe göre filtrele:",
     qsWrite:"İçerik yaz", qsImage:"Görsel üret", qsVideo:"Video düzenle", qsCode:"Kod yaz",
     qsAutomate:"İşleri otomatikleştir", qsTranslate:"Metin çevir", qsMusic:"Müzik yap", qsChat:"Sohbet et & soru sor",
@@ -745,8 +745,8 @@ const I18N = {
     featuredTitle:"Destaca tu herramienta", featuredSub:"Pon tu herramienta en lo más alto del catálogo con una insignia Destacado y ubicación prioritaria.",
     planMonthlyName:"Mensual", planPerMonth:"/mes", planQuarterName:"3 meses", planOneTime:" pago único",
     featuredEmail:"Correo de contacto", featuredSubmit:"Solicitar posición Destacada",
-    featuredFinePrint:"Te enviaremos un enlace de pago por correo para confirmar — aquí no se recopilan datos de tarjeta.",
-    featuredToastMsg:"¡Gracias! Te enviaremos un enlace de pago por correo para confirmar tu posición Destacada.",
+    featuredFinePrint:"Serás redirigido a PayPal para completar el pago — aquí no se recopilan datos de tarjeta.",
+    featuredToastMsg:"¡Gracias! Completa tu pago en la pestaña de PayPal que se acaba de abrir.",
     quickStartLabel:"¿No sabes por dónde empezar? Prueba:", featuresLabel:"Filtrar por función:",
     qsWrite:"Escribir contenido", qsImage:"Generar imágenes", qsVideo:"Editar video", qsCode:"Escribir código",
     qsAutomate:"Automatizar tareas", qsTranslate:"Traducir texto", qsMusic:"Crear música", qsChat:"Chatear y preguntar",
@@ -779,8 +779,8 @@ const I18N = {
     featuredTitle:"Featured werden", featuredSub:"Bring dein Tool mit einem Featured-Badge und Top-Platzierung an die Spitze des Katalogs.",
     planMonthlyName:"Monatlich", planPerMonth:"/Monat", planQuarterName:"3 Monate", planOneTime:" einmalig",
     featuredEmail:"Kontakt-E-Mail", featuredSubmit:"Featured-Platzierung anfragen",
-    featuredFinePrint:"Wir senden dir einen Zahlungslink per E-Mail zur Bestätigung — hier werden keine Kartendaten erfasst.",
-    featuredToastMsg:"Danke! Wir senden dir per E-Mail einen Zahlungslink zur Bestätigung deiner Featured-Platzierung.",
+    featuredFinePrint:"Du wirst zu PayPal weitergeleitet, um die Zahlung abzuschließen — hier werden keine Kartendaten erfasst.",
+    featuredToastMsg:"Danke! Schließe deine Zahlung im gerade geöffneten PayPal-Tab ab.",
     quickStartLabel:"Nicht sicher, wo du anfangen sollst? Probiere:", featuresLabel:"Nach Funktion filtern:",
     qsWrite:"Inhalte schreiben", qsImage:"Bilder erzeugen", qsVideo:"Video bearbeiten", qsCode:"Code schreiben",
     qsAutomate:"Aufgaben automatisieren", qsTranslate:"Text übersetzen", qsMusic:"Musik machen", qsChat:"Chatten & fragen",
@@ -813,8 +813,8 @@ const I18N = {
     featuredTitle:"Mettez votre outil en avant", featuredSub:"Placez votre outil en tête du catalogue avec un badge En vedette et un emplacement prioritaire.",
     planMonthlyName:"Mensuel", planPerMonth:"/mois", planQuarterName:"3 mois", planOneTime:" paiement unique",
     featuredEmail:"E-mail de contact", featuredSubmit:"Demander une mise en avant",
-    featuredFinePrint:"Nous vous enverrons un lien de paiement par e-mail pour confirmer — aucune donnée de carte n'est collectée ici.",
-    featuredToastMsg:"Merci ! Nous vous enverrons un lien de paiement par e-mail pour confirmer votre mise en avant.",
+    featuredFinePrint:"Vous serez redirigé vers PayPal pour finaliser le paiement — aucune donnée de carte n'est collectée ici.",
+    featuredToastMsg:"Merci ! Terminez votre paiement dans l'onglet PayPal qui vient de s'ouvrir.",
     quickStartLabel:"Vous ne savez pas par où commencer ? Essayez :", featuresLabel:"Filtrer par fonctionnalité :",
     qsWrite:"Rédiger du contenu", qsImage:"Générer des images", qsVideo:"Monter une vidéo", qsCode:"Écrire du code",
     qsAutomate:"Automatiser des tâches", qsTranslate:"Traduire un texte", qsMusic:"Créer de la musique", qsChat:"Discuter et poser des questions",
@@ -1263,6 +1263,8 @@ document.addEventListener('keydown', (e)=>{
   if(e.key === 'Escape'){ closeModal(); closeFeaturedModal(); }
 });
 
+const FEATURED_PAYEE_EMAIL = 'k.svetlanaheves@gmail.com';
+
 featuredForm.addEventListener('submit', (e)=>{
   e.preventDefault();
   const data = new FormData(featuredForm);
@@ -1271,12 +1273,18 @@ featuredForm.addEventListener('submit', (e)=>{
   const email = data.get('email');
   const desc = data.get('desc');
   const plan = data.get('plan');
+  const planInput = featuredForm.querySelector('input[name="plan"]:checked');
+  const amount = planInput.dataset.amount;
+  const itemName = planInput.dataset.item;
+
+  const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(FEATURED_PAYEE_EMAIL)}&item_name=${encodeURIComponent(itemName)}&amount=${amount}&currency_code=USD&no_shipping=1`;
+  window.open(paypalUrl, '_blank', 'noopener');
 
   const subject = encodeURIComponent(`AI Finder — Featured request: ${name} (${plan})`);
   const body = encodeURIComponent(
     `Tool name: ${name}\nURL: ${url}\nPlan: ${plan}\nContact email: ${email}\nNotes: ${desc || '-'}`
   );
-  window.location.href = `mailto:k.svetlanaheves@gmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:${FEATURED_PAYEE_EMAIL}?subject=${subject}&body=${body}`;
 
   closeFeaturedModal();
   featuredForm.reset();
