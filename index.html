@@ -11,6 +11,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AI Finder — The AI Tool Catalog">
 <meta name="twitter:description" content="A running index of AI tools — searchable, filterable, and updated as new ones ship.">
+<link rel="canonical" href="https://create-repository-xelo.onrender.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237C3AED'/%3E%3Ctext x='32' y='43' font-family='Arial, sans-serif' font-weight='700' font-size='26' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -650,6 +651,27 @@
 <div id="toast"></div>
 
 <script>
+// Paste your GA4 Measurement ID here (from analytics.google.com — free, instant signup, no verification
+// needed) to enable visit and click tracking. Leave blank to keep analytics disabled.
+const GA_MEASUREMENT_ID = ''; // e.g. 'G-XXXXXXXXXX'
+
+if (GA_MEASUREMENT_ID) {
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(gaScript);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID);
+}
+
+function trackEvent(name, params){
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, params || {});
+  }
+}
+
 const I18N = {
   en: {
     navCatalog:"Catalog", navSubmit:"Submit a tool", navAbout:"About",
@@ -1037,6 +1059,7 @@ function render(){
       <a class="visit" href="${t.url}" target="_blank" rel="noopener">${tr('visitTool')}</a>
     `;
     card.querySelector('.fav-btn').addEventListener('click', ()=> toggleFavorite(t.id));
+    card.querySelector('.visit').addEventListener('click', ()=> trackEvent('visit_tool', { tool_name: t.name, category: t.cat }));
     attachTilt(card);
     grid.appendChild(card);
     if(!prefersReducedMotion){
@@ -1055,12 +1078,15 @@ function render(){
         <td><span class="tag cat-tag">${t.cat}</span></td>
         <td><span class="tag price-${t.price.toLowerCase()}">${tr(priceKey(t.price))}</span></td>
         <td class="stars">${stars(t.rating)}</td>
-        <td><a class="visit visit-sm" href="${t.url}" target="_blank" rel="noopener">${tr('visitShort')}</a></td>
+        <td><a class="visit visit-sm" href="${t.url}" target="_blank" rel="noopener" data-name="${t.name}" data-cat="${t.cat}">${tr('visitShort')}</a></td>
       </tr>
     `;
   }).join('');
   tableBody.querySelectorAll('.fav-btn').forEach(btn=>{
     btn.addEventListener('click', ()=> toggleFavorite(btn.dataset.id));
+  });
+  tableBody.querySelectorAll('.visit').forEach(link=>{
+    link.addEventListener('click', ()=> trackEvent('visit_tool', { tool_name: link.dataset.name, category: link.dataset.cat }));
   });
 
   const isEmpty = filtered.length === 0;
@@ -1123,6 +1149,7 @@ function buildQuickStarts(){
       favFilterBtn.classList.remove('active');
       buildChips();
       render();
+      trackEvent('quick_start_click', { task: qs.key, category: qs.cat });
       document.getElementById('catalog').scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
     });
     quickStartChipsEl.appendChild(chip);
@@ -1240,6 +1267,7 @@ submitForm.addEventListener('submit', (e)=>{
     `Tool name: ${name}\nURL: ${url}\nCategory: ${cat}\nDescription: ${desc}\nSuggested by: ${email || '-'}`
   );
   window.location.href = `mailto:k.svetlanaheves@gmail.com?subject=${subject}&body=${body}`;
+  trackEvent('submit_tool', { tool_name: name, category: cat });
 
   closeModal();
   submitForm.reset();
@@ -1296,11 +1324,36 @@ featuredForm.addEventListener('submit', (e)=>{
     `Tool name: ${name}\nURL: ${url}\nPlan: ${plan}\nContact email: ${email}\nNotes: ${desc || '-'}`
   );
   window.location.href = `mailto:${FEATURED_PAYEE_EMAIL}?subject=${subject}&body=${body}`;
+  trackEvent('featured_request', { tool_name: name, plan: planId, value: Number(amount), currency: 'USD' });
 
   closeFeaturedModal();
   featuredForm.reset();
   showToast(tr('featuredToastMsg'));
 });
+
+// Structured data for search engines
+(function injectStructuredData(){
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "AI Finder — The AI Tool Catalog",
+    "itemListElement": TOOLS.map((t, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": t.name,
+        "applicationCategory": t.cat,
+        "description": t.desc,
+        "url": t.url
+      }
+    }))
+  };
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(data);
+  document.head.appendChild(script);
+})();
 </script>
 
 </body>
