@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Finder — The AI Tool Catalog</title>
+<meta name="description" content="AI Finder is a searchable, filterable catalog of AI tools across writing, image, video, audio, code, avatars, research and more.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Finder — The AI Tool Catalog">
+<meta property="og:description" content="A running index of AI tools — searchable, filterable, and updated as new ones ship.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI Finder — The AI Tool Catalog">
+<meta name="twitter:description" content="A running index of AI tools — searchable, filterable, and updated as new ones ship.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237C3AED'/%3E%3Ctext x='32' y='43' font-family='Arial, sans-serif' font-weight='700' font-size='26' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -886,6 +893,15 @@ const TOOLS = [
   {id:"AI·052", name:"Avaturn", cat:"Avatar", desc:"Generates realistic 3D avatars from selfies for games and virtual worlds.", rating:3, featured:false, url:"https://avaturn.me", price:"Freemium", features:["api","freeTrial"]},
   {id:"AI·053", name:"Boomy", cat:"Music", desc:"Generates original songs in seconds and lets you release them to streaming platforms.", rating:4, featured:false, url:"https://boomy.com", price:"Freemium", features:["mobileApp","freeTrial"]},
   {id:"AI·054", name:"Loudly", cat:"Music", desc:"AI music generator for quickly creating royalty-free tracks and songs.", rating:3, featured:false, url:"https://www.loudly.com", price:"Freemium", features:["mobileApp","freeTrial"]},
+  {id:"AI·055", name:"Gamma", cat:"Presentation", desc:"Generates polished slide decks, documents and webpages from a single prompt.", rating:4, featured:false, url:"https://gamma.app", price:"Freemium", features:["freeTrial","teamCollab"]},
+  {id:"AI·056", name:"Tome", cat:"Presentation", desc:"AI-powered storytelling tool for building narrative slide decks.", rating:3, featured:false, url:"https://tome.app", price:"Freemium", features:["freeTrial","teamCollab"]},
+  {id:"AI·057", name:"Elicit", cat:"Research", desc:"AI research assistant that finds, summarizes and extracts data from academic papers.", rating:4, featured:false, url:"https://elicit.com", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·058", name:"Consensus", cat:"Research", desc:"Search engine that answers questions using findings from scientific research.", rating:4, featured:false, url:"https://consensus.app", price:"Freemium", features:["freeTrial","browserExt"]},
+  {id:"AI·059", name:"Julius AI", cat:"Data", desc:"Chats with your spreadsheets and datasets to build charts and run analysis.", rating:4, featured:false, url:"https://julius.ai", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·060", name:"Chatbase", cat:"Support", desc:"Builds a custom AI chatbot trained on your own website and documents.", rating:4, featured:false, url:"https://www.chatbase.co", price:"Freemium", features:["api","teamCollab"]},
+  {id:"AI·061", name:"Intercom Fin", cat:"Support", desc:"AI customer service agent that resolves support tickets automatically.", rating:4, featured:false, url:"https://www.intercom.com/fin", price:"Paid", features:["api","enterprise"]},
+  {id:"AI·062", name:"Surfer SEO", cat:"SEO", desc:"Optimizes content for search rankings with AI-driven on-page recommendations.", rating:4, featured:false, url:"https://surferseo.com", price:"Paid", features:["api","teamCollab"]},
+  {id:"AI·063", name:"Fireflies.ai", cat:"Productivity", desc:"Records, transcribes and summarizes meetings automatically.", rating:4, featured:false, url:"https://fireflies.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
 ];
 
 const FEATURE_TAGS = ["api","freeTrial","noLogin","teamCollab","mobileApp","browserExt","offline","enterprise"];
@@ -905,6 +921,7 @@ const CAT_COLORS = {
   Assistant:"#6D5DFC", Writing:"#F06595", Image:"#FF922B", Video:"#FA5252",
   Audio:"#15AABF", Code:"#40C057", Productivity:"#F5B400", Design:"#BE4BDB",
   "3D":"#4C6EF5", Music:"#12B886", Agent:"#868E96", Translation:"#0B7285", Avatar:"#D6336C",
+  Presentation:"#E8590C", Research:"#5F3DC4", Data:"#0CA678", Support:"#1971C2", SEO:"#C2255C",
 };
 
 const grid = document.getElementById('grid');
