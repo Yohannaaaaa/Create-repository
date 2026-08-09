@@ -619,12 +619,12 @@
     <form id="featuredForm">
       <div class="plans">
         <label class="plan">
-          <input type="radio" name="plan" value="Monthly — $49/mo" data-amount="49" data-item="AI Finder Featured Placement (Monthly)" checked>
+          <input type="radio" name="plan" value="Monthly — $49/mo" data-plan-id="monthly" data-amount="49" data-item="AI Finder Featured Placement (Monthly)" checked>
           <span class="plan-name" data-i18n="planMonthlyName">Monthly</span>
           <span class="plan-price">$49<small data-i18n="planPerMonth">/mo</small></span>
         </label>
         <label class="plan">
-          <input type="radio" name="plan" value="3 months — $99 one-time" data-amount="99" data-item="AI Finder Featured Placement (3 months)">
+          <input type="radio" name="plan" value="3 months — $99 one-time" data-plan-id="quarterly" data-amount="99" data-item="AI Finder Featured Placement (3 months)">
           <span class="plan-name" data-i18n="planQuarterName">3 months</span>
           <span class="plan-price">$99<small data-i18n="planOneTime"> one-time</small></span>
         </label>
@@ -1265,6 +1265,13 @@ document.addEventListener('keydown', (e)=>{
 
 const FEATURED_PAYEE_EMAIL = 'k.svetlanaheves@gmail.com';
 
+// Paste real Stripe Payment Links here once created (Stripe Dashboard → Payment Links → New)
+// and they'll be used automatically instead of the PayPal fallback below. Leave blank to keep using PayPal.
+const STRIPE_LINKS = {
+  monthly: '',   // e.g. 'https://buy.stripe.com/xxxxxxxxxxxx'
+  quarterly: '', // e.g. 'https://buy.stripe.com/yyyyyyyyyyyy'
+};
+
 featuredForm.addEventListener('submit', (e)=>{
   e.preventDefault();
   const data = new FormData(featuredForm);
@@ -1276,9 +1283,13 @@ featuredForm.addEventListener('submit', (e)=>{
   const planInput = featuredForm.querySelector('input[name="plan"]:checked');
   const amount = planInput.dataset.amount;
   const itemName = planInput.dataset.item;
+  const planId = planInput.dataset.planId;
 
-  const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(FEATURED_PAYEE_EMAIL)}&item_name=${encodeURIComponent(itemName)}&amount=${amount}&currency_code=USD&no_shipping=1`;
-  window.open(paypalUrl, '_blank', 'noopener');
+  const stripeLink = STRIPE_LINKS[planId];
+  const paymentUrl = stripeLink
+    ? stripeLink
+    : `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(FEATURED_PAYEE_EMAIL)}&item_name=${encodeURIComponent(itemName)}&amount=${amount}&currency_code=USD&no_shipping=1`;
+  window.open(paymentUrl, '_blank', 'noopener');
 
   const subject = encodeURIComponent(`AI Finder — Featured request: ${name} (${plan})`);
   const body = encodeURIComponent(
