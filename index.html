@@ -10,8 +10,10 @@
   :root{
     --ink:#14171F;
     --paper:#F7F5F0;
-    --accent:#5B5FEF;
-    --accent-dim:#4347c4;
+    --accent:#7C3AED;
+    --accent-dim:#5B21C4;
+    --accent-2:#00D2C6;
+    --accent-gradient:linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
     --slate:#6B7280;
     --line:#DAD7CE;
     --amber:#FFB74D;
@@ -23,8 +25,9 @@
     --card:#1C212B;
     --line:#2B3040;
     --slate:#9CA3B5;
-    --accent:#8A8EFF;
-    --accent-dim:#A7ABFF;
+    --accent:#A47BFF;
+    --accent-dim:#C4A9FF;
+    --accent-2:#33E6D8;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -57,8 +60,12 @@
     font-size:1.25rem;
     letter-spacing:0.02em;
     display:flex; align-items:center; gap:8px;
+    background:var(--accent-gradient);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
-  .logo .dot{ width:8px; height:8px; background:var(--accent); border-radius:50%; }
+  .logo .dot{ width:8px; height:8px; background:var(--accent-gradient); border-radius:50%; }
   .header-right{ display:flex; align-items:center; gap:20px; }
   nav{ display:flex; gap:24px; font-size:0.9rem; }
   nav a{ text-decoration:none; opacity:0.8; transition:opacity .15s; background:none; border:none; color:inherit; font:inherit; cursor:pointer; padding:0; }
@@ -72,8 +79,30 @@
   .theme-toggle:hover, .theme-toggle:focus-visible{ border-color:rgba(247,245,240,.7); }
 
   .hero{
+    position:relative;
     max-width:1120px; margin:0 auto;
     padding:64px 24px 32px;
+    overflow:hidden;
+  }
+  .hero::before, .hero::after{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:-1;
+    pointer-events:none;
+  }
+  .hero::before{
+    top:-140px; right:-100px;
+    width:420px; height:420px;
+    background:var(--accent-gradient);
+    opacity:.30;
+  }
+  .hero::after{
+    bottom:-160px; left:-60px;
+    width:320px; height:320px;
+    background:var(--accent-gradient);
+    opacity:.16;
   }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
