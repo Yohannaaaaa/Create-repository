@@ -103,6 +103,12 @@
   .lang-select:hover, .lang-select:focus-visible{ border-color:rgba(247,245,240,.7); }
   .lang-select option{ background:#14171F; color:#F7F5F0; }
 
+  @media (max-width:640px){
+    .header-inner{ flex-wrap:wrap; row-gap:10px; }
+    nav{ order:3; width:100%; justify-content:center; gap:14px; font-size:0.82rem; flex-wrap:wrap; }
+    .header-right{ gap:10px; }
+  }
+
   .hero{
     position:relative;
     max-width:1120px; margin:0 auto;
