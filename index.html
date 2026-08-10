@@ -1327,7 +1327,7 @@ featuredForm.addEventListener('submit', (e)=>{
   const stripeLink = STRIPE_LINKS[planId];
   const paymentUrl = stripeLink
     ? stripeLink
-    : `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(FEATURED_PAYEE_EMAIL)}&item_name=${encodeURIComponent(itemName)}&amount=${amount}&currency_code=USD&no_shipping=1`;
+    : `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(FEATURED_PAYEE_EMAIL)}&item_name=${encodeURIComponent(itemName)}&amount=${amount}&currency_code=USD&no_shipping=1&custom=${encodeURIComponent(name)}`;
   window.open(paymentUrl, '_blank', 'noopener');
 
   const subject = encodeURIComponent(`AI Finder — Featured request: ${name} (${plan})`);
