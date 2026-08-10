@@ -865,69 +865,70 @@ function priceKey(price){
 }
 
 const TOOLS = [
-  {id:"AI·001", name:"ChatGPT", cat:"Assistant", desc:"General-purpose AI chat assistant for writing, research, coding and more.", rating:5, featured:false, url:"https://chat.openai.com", price:"Freemium", features:["api","mobileApp","browserExt"]},
-  {id:"AI·002", name:"Claude", cat:"Assistant", desc:"Conversational AI assistant from Anthropic, strong at writing and reasoning.", rating:5, featured:false, url:"https://claude.ai", price:"Freemium", features:["api","mobileApp"]},
-  {id:"AI·003", name:"Gemini", cat:"Assistant", desc:"Google's AI assistant, integrated with Search, Docs and Gmail.", rating:4, featured:false, url:"https://gemini.google.com", price:"Freemium", features:["api","mobileApp","browserExt"]},
-  {id:"AI·004", name:"Perplexity", cat:"Assistant", desc:"AI answer engine that searches the web and cites its sources.", rating:4, featured:false, url:"https://www.perplexity.ai", price:"Freemium", features:["api","mobileApp","browserExt"]},
-  {id:"AI·005", name:"Jasper", cat:"Writing", desc:"AI writing platform built for marketing teams and brand-voice content.", rating:4, featured:false, url:"https://www.jasper.ai", price:"Paid", features:["api","teamCollab","enterprise"]},
-  {id:"AI·006", name:"Copy.ai", cat:"Writing", desc:"AI copywriting tool for ads, product descriptions and marketing emails.", rating:3, featured:false, url:"https://www.copy.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
-  {id:"AI·007", name:"Grammarly", cat:"Writing", desc:"AI-powered grammar, tone and clarity checker for everyday writing.", rating:4, featured:false, url:"https://www.grammarly.com", price:"Freemium", features:["browserExt","mobileApp","freeTrial"]},
-  {id:"AI·008", name:"Midjourney", cat:"Image", desc:"Text-to-image generator known for high-fidelity, artistic output.", rating:5, featured:false, url:"https://www.midjourney.com", price:"Paid", features:["api","teamCollab"]},
-  {id:"AI·009", name:"Adobe Firefly", cat:"Image", desc:"Adobe's generative image and design tool, integrated with Photoshop.", rating:4, featured:false, url:"https://www.adobe.com/products/firefly.html", price:"Freemium", features:["api","enterprise","teamCollab"]},
-  {id:"AI·010", name:"Ideogram", cat:"Image", desc:"Text-to-image model with strong, legible in-image text rendering.", rating:4, featured:false, url:"https://ideogram.ai", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·011", name:"Runway", cat:"Video", desc:"AI video generation and editing suite, from text or image prompts.", rating:4, featured:false, url:"https://runwayml.com", price:"Freemium", features:["api","teamCollab","freeTrial"]},
-  {id:"AI·012", name:"Synthesia", cat:"Video", desc:"Turns scripts into videos with AI avatars speaking in many languages.", rating:4, featured:false, url:"https://www.synthesia.io", price:"Paid", features:["api","enterprise","teamCollab"]},
-  {id:"AI·013", name:"HeyGen", cat:"Video", desc:"AI avatar video generator for marketing, training and localization.", rating:4, featured:false, url:"https://www.heygen.com", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·014", name:"ElevenLabs", cat:"Audio", desc:"Realistic AI voice generation and cloning for narration and dubbing.", rating:5, featured:false, url:"https://elevenlabs.io", price:"Freemium", features:["api","freeTrial","mobileApp"]},
-  {id:"AI·015", name:"Suno", cat:"Music", desc:"Generates full songs, vocals and instrumentals from a text prompt.", rating:4, featured:false, url:"https://suno.com", price:"Freemium", features:["mobileApp","freeTrial"]},
-  {id:"AI·016", name:"Descript", cat:"Audio", desc:"Edits audio and video by editing a text transcript directly.", rating:4, featured:false, url:"https://www.descript.com", price:"Freemium", features:["teamCollab","freeTrial"]},
-  {id:"AI·017", name:"GitHub Copilot", cat:"Code", desc:"AI pair programmer that autocompletes and explains code in-editor.", rating:5, featured:false, url:"https://github.com/features/copilot", price:"Paid", features:["api","enterprise"]},
-  {id:"AI·018", name:"Cursor", cat:"Code", desc:"AI-native code editor built around chat, edits and codebase context.", rating:5, featured:false, url:"https://www.cursor.com", price:"Freemium", features:["freeTrial","api"]},
-  {id:"AI·019", name:"Replit", cat:"Code", desc:"Browser-based coding environment with an AI agent that builds apps.", rating:4, featured:false, url:"https://replit.com", price:"Freemium", features:["freeTrial","teamCollab","mobileApp"]},
-  {id:"AI·020", name:"Notion AI", cat:"Productivity", desc:"Writing and summarizing assistant built directly into Notion docs.", rating:4, featured:false, url:"https://www.notion.com/product/ai", price:"Paid", features:["teamCollab","mobileApp"]},
-  {id:"AI·021", name:"Otter.ai", cat:"Productivity", desc:"Real-time meeting transcription with automatic summaries and action items.", rating:4, featured:false, url:"https://otter.ai", price:"Freemium", features:["mobileApp","freeTrial","teamCollab"]},
-  {id:"AI·022", name:"Canva Magic Studio", cat:"Design", desc:"AI design tools inside Canva: image generation, backgrounds, and layouts.", rating:4, featured:false, url:"https://www.canva.com/magic-studio", price:"Freemium", features:["mobileApp","teamCollab","freeTrial"]},
-  {id:"AI·023", name:"Figma AI", cat:"Design", desc:"AI features inside Figma for generating and editing UI designs.", rating:3, featured:false, url:"https://www.figma.com", price:"Freemium", features:["teamCollab","freeTrial"]},
-  {id:"AI·024", name:"Uizard", cat:"Design", desc:"Turns text prompts or sketches into editable app and web mockups.", rating:3, featured:false, url:"https://uizard.io", price:"Freemium", features:["freeTrial"]},
-  {id:"AI·025", name:"Luma AI", cat:"3D", desc:"Generates 3D models and scenes from text prompts or photos.", rating:4, featured:false, url:"https://lumalabs.ai", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·026", name:"Spline AI", cat:"3D", desc:"AI-assisted 3D design tool for building web-ready interactive scenes.", rating:4, featured:false, url:"https://spline.design", price:"Freemium", features:["teamCollab","freeTrial","browserExt"]},
-  {id:"AI·027", name:"AIVA", cat:"Music", desc:"AI composer that creates original instrumental music tracks.", rating:4, featured:false, url:"https://www.aiva.ai", price:"Freemium", features:["freeTrial"]},
-  {id:"AI·028", name:"Soundraw", cat:"Music", desc:"Generates royalty-free background music customized by mood and length.", rating:3, featured:false, url:"https://soundraw.io", price:"Paid", features:["freeTrial"]},
-  {id:"AI·029", name:"AutoGPT", cat:"Agent", desc:"Open-source autonomous agent that chains tasks toward a goal.", rating:3, featured:false, url:"https://github.com/Significant-Gravitas/AutoGPT", price:"Free", features:["api","noLogin","offline"]},
-  {id:"AI·030", name:"Zapier AI", cat:"Agent", desc:"AI-powered automation that connects apps and triggers workflows.", rating:4, featured:false, url:"https://zapier.com/ai", price:"Freemium", features:["api","teamCollab","freeTrial"]},
-  {id:"AI·031", name:"Devin", cat:"Agent", desc:"AI software engineer that plans and executes coding tasks autonomously.", rating:4, featured:false, url:"https://devin.ai", price:"Paid", features:["api","enterprise"]},
-  {id:"AI·032", name:"Grok", cat:"Assistant", desc:"xAI's conversational assistant with real-time access to X and fast responses.", rating:4, featured:false, url:"https://grok.x.ai", price:"Freemium", features:["api","mobileApp","freeTrial"]},
-  {id:"AI·033", name:"Meta AI", cat:"Assistant", desc:"Meta's AI assistant built into WhatsApp, Instagram and Facebook.", rating:3, featured:false, url:"https://www.meta.ai", price:"Free", features:["mobileApp","noLogin"]},
-  {id:"AI·034", name:"Writesonic", cat:"Writing", desc:"AI content generator for blog posts, ads and SEO-optimized articles.", rating:3, featured:false, url:"https://writesonic.com", price:"Freemium", features:["api","freeTrial","teamCollab"]},
-  {id:"AI·035", name:"QuillBot", cat:"Writing", desc:"AI paraphrasing, grammar and summarizing tool for clearer writing.", rating:3, featured:false, url:"https://quillbot.com", price:"Freemium", features:["browserExt","freeTrial","mobileApp"]},
-  {id:"AI·036", name:"DALL·E 3", cat:"Image", desc:"OpenAI's text-to-image model, integrated directly into ChatGPT.", rating:4, featured:false, url:"https://openai.com/dall-e-3", price:"Paid", features:["api"]},
-  {id:"AI·037", name:"Leonardo AI", cat:"Image", desc:"Text-to-image generator popular for game art and concept design.", rating:4, featured:false, url:"https://leonardo.ai", price:"Freemium", features:["api","freeTrial","mobileApp"]},
-  {id:"AI·038", name:"Stable Diffusion", cat:"Image", desc:"Open-source text-to-image model that can run locally or in the cloud.", rating:4, featured:false, url:"https://stability.ai", price:"Free", features:["api","noLogin","offline"]},
-  {id:"AI·039", name:"Kling AI", cat:"Video", desc:"Text-to-video model known for realistic motion and longer clips.", rating:4, featured:false, url:"https://klingai.com", price:"Freemium", features:["freeTrial","mobileApp"]},
-  {id:"AI·040", name:"Pika", cat:"Video", desc:"AI video generator for quick text-to-video and image-to-video clips.", rating:3, featured:false, url:"https://pika.art", price:"Freemium", features:["freeTrial","mobileApp"]},
-  {id:"AI·041", name:"Murf AI", cat:"Audio", desc:"Text-to-speech studio with lifelike voiceovers for videos and presentations.", rating:4, featured:false, url:"https://murf.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
-  {id:"AI·042", name:"Windsurf", cat:"Code", desc:"AI-native code editor built around agentic, multi-file coding flows.", rating:4, featured:false, url:"https://windsurf.com", price:"Freemium", features:["freeTrial","api"]},
-  {id:"AI·043", name:"Bolt.new", cat:"Code", desc:"Prompts full-stack web apps into existence directly in the browser.", rating:4, featured:false, url:"https://bolt.new", price:"Freemium", features:["noLogin","freeTrial"]},
-  {id:"AI·044", name:"Reclaim AI", cat:"Productivity", desc:"AI scheduling assistant that auto-blocks time for tasks and habits.", rating:4, featured:false, url:"https://reclaim.ai", price:"Freemium", features:["api","teamCollab","freeTrial"]},
-  {id:"AI·045", name:"Framer AI", cat:"Design", desc:"Generates full, responsive websites from a single text prompt.", rating:4, featured:false, url:"https://www.framer.com/ai", price:"Freemium", features:["freeTrial","teamCollab"]},
-  {id:"AI·046", name:"Meshy", cat:"3D", desc:"Text-to-3D and image-to-3D generator for game-ready assets.", rating:4, featured:false, url:"https://www.meshy.ai", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·047", name:"Udio", cat:"Music", desc:"AI music generator that creates full songs with vocals from a prompt.", rating:4, featured:false, url:"https://www.udio.com", price:"Freemium", features:["freeTrial","mobileApp"]},
-  {id:"AI·048", name:"Manus", cat:"Agent", desc:"General-purpose autonomous agent that plans and completes multi-step tasks.", rating:4, featured:false, url:"https://manus.im", price:"Paid", features:["api"]},
-  {id:"AI·049", name:"DeepL", cat:"Translation", desc:"AI translator known for fluent, natural-sounding translations.", rating:5, featured:false, url:"https://www.deepl.com", price:"Freemium", features:["api","freeTrial","browserExt","mobileApp"]},
-  {id:"AI·050", name:"Lensa AI", cat:"Avatar", desc:"Turns selfies into stylized AI avatar portraits in dozens of art styles.", rating:4, featured:false, url:"https://prisma-ai.com/lensa", price:"Paid", features:["mobileApp","freeTrial"]},
-  {id:"AI·051", name:"D-ID", cat:"Avatar", desc:"Creates talking AI avatars and digital humans from a single photo.", rating:4, featured:false, url:"https://www.d-id.com", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·052", name:"Avaturn", cat:"Avatar", desc:"Generates realistic 3D avatars from selfies for games and virtual worlds.", rating:3, featured:false, url:"https://avaturn.me", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·053", name:"Boomy", cat:"Music", desc:"Generates original songs in seconds and lets you release them to streaming platforms.", rating:4, featured:false, url:"https://boomy.com", price:"Freemium", features:["mobileApp","freeTrial"]},
-  {id:"AI·054", name:"Loudly", cat:"Music", desc:"AI music generator for quickly creating royalty-free tracks and songs.", rating:3, featured:false, url:"https://www.loudly.com", price:"Freemium", features:["mobileApp","freeTrial"]},
-  {id:"AI·055", name:"Gamma", cat:"Presentation", desc:"Generates polished slide decks, documents and webpages from a single prompt.", rating:4, featured:false, url:"https://gamma.app", price:"Freemium", features:["freeTrial","teamCollab"]},
-  {id:"AI·056", name:"Tome", cat:"Presentation", desc:"AI-powered storytelling tool for building narrative slide decks.", rating:3, featured:false, url:"https://tome.app", price:"Freemium", features:["freeTrial","teamCollab"]},
-  {id:"AI·057", name:"Elicit", cat:"Research", desc:"AI research assistant that finds, summarizes and extracts data from academic papers.", rating:4, featured:false, url:"https://elicit.com", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·058", name:"Consensus", cat:"Research", desc:"Search engine that answers questions using findings from scientific research.", rating:4, featured:false, url:"https://consensus.app", price:"Freemium", features:["freeTrial","browserExt"]},
-  {id:"AI·059", name:"Julius AI", cat:"Data", desc:"Chats with your spreadsheets and datasets to build charts and run analysis.", rating:4, featured:false, url:"https://julius.ai", price:"Freemium", features:["api","freeTrial"]},
-  {id:"AI·060", name:"Chatbase", cat:"Support", desc:"Builds a custom AI chatbot trained on your own website and documents.", rating:4, featured:false, url:"https://www.chatbase.co", price:"Freemium", features:["api","teamCollab"]},
-  {id:"AI·061", name:"Intercom Fin", cat:"Support", desc:"AI customer service agent that resolves support tickets automatically.", rating:4, featured:false, url:"https://www.intercom.com/fin", price:"Paid", features:["api","enterprise"]},
-  {id:"AI·062", name:"Surfer SEO", cat:"SEO", desc:"Optimizes content for search rankings with AI-driven on-page recommendations.", rating:4, featured:false, url:"https://surferseo.com", price:"Paid", features:["api","teamCollab"]},
-  {id:"AI·063", name:"Fireflies.ai", cat:"Productivity", desc:"Records, transcribes and summarizes meetings automatically.", rating:4, featured:false, url:"https://fireflies.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
+  {id:"AI·001", name:"ChatGPT", cats:["Assistant","Writing","Code","Research"], desc:"General-purpose AI chat assistant for writing, research, coding and more.", rating:5, featured:false, url:"https://chat.openai.com", price:"Freemium", features:["api","mobileApp","browserExt"]},
+  {id:"AI·002", name:"Claude", cats:["Assistant","Writing","Code","Research"], desc:"Conversational AI assistant from Anthropic, strong at writing and reasoning.", rating:5, featured:false, url:"https://claude.ai", price:"Freemium", features:["api","mobileApp"]},
+  {id:"AI·003", name:"Gemini", cats:["Assistant","Writing","Code","Research"], desc:"Google's AI assistant, integrated with Search, Docs and Gmail.", rating:4, featured:false, url:"https://gemini.google.com", price:"Freemium", features:["api","mobileApp","browserExt"]},
+  {id:"AI·004", name:"Perplexity", cats:["Assistant","Research"], desc:"AI answer engine that searches the web and cites its sources.", rating:4, featured:false, url:"https://www.perplexity.ai", price:"Freemium", features:["api","mobileApp","browserExt"]},
+  {id:"AI·005", name:"Jasper", cats:["Writing"], desc:"AI writing platform built for marketing teams and brand-voice content.", rating:4, featured:false, url:"https://www.jasper.ai", price:"Paid", features:["api","teamCollab","enterprise"]},
+  {id:"AI·006", name:"Copy.ai", cats:["Writing"], desc:"AI copywriting tool for ads, product descriptions and marketing emails.", rating:3, featured:false, url:"https://www.copy.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
+  {id:"AI·007", name:"Grammarly", cats:["Writing"], desc:"AI-powered grammar, tone and clarity checker for everyday writing.", rating:4, featured:false, url:"https://www.grammarly.com", price:"Freemium", features:["browserExt","mobileApp","freeTrial"]},
+  {id:"AI·008", name:"Midjourney", cats:["Image"], desc:"Text-to-image generator known for high-fidelity, artistic output.", rating:5, featured:false, url:"https://www.midjourney.com", price:"Paid", features:["api","teamCollab"]},
+  {id:"AI·009", name:"Adobe Firefly", cats:["Image","Design"], desc:"Adobe's generative image and design tool, integrated with Photoshop.", rating:4, featured:false, url:"https://www.adobe.com/products/firefly.html", price:"Freemium", features:["api","enterprise","teamCollab"]},
+  {id:"AI·010", name:"Ideogram", cats:["Image"], desc:"Text-to-image model with strong, legible in-image text rendering.", rating:4, featured:false, url:"https://ideogram.ai", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·011", name:"Runway", cats:["Video","Image"], desc:"AI video generation and editing suite, from text or image prompts.", rating:4, featured:false, url:"https://runwayml.com", price:"Freemium", features:["api","teamCollab","freeTrial"]},
+  {id:"AI·012", name:"Synthesia", cats:["Video"], desc:"Turns scripts into videos with AI avatars speaking in many languages.", rating:4, featured:false, url:"https://www.synthesia.io", price:"Paid", features:["api","enterprise","teamCollab"]},
+  {id:"AI·013", name:"HeyGen", cats:["Video","Avatar"], desc:"AI avatar video generator for marketing, training and localization.", rating:4, featured:false, url:"https://www.heygen.com", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·014", name:"ElevenLabs", cats:["Audio"], desc:"Realistic AI voice generation and cloning for narration and dubbing.", rating:5, featured:false, url:"https://elevenlabs.io", price:"Freemium", features:["api","freeTrial","mobileApp"]},
+  {id:"AI·015", name:"Suno", cats:["Music"], desc:"Generates full songs, vocals and instrumentals from a text prompt.", rating:4, featured:false, url:"https://suno.com", price:"Freemium", features:["mobileApp","freeTrial"]},
+  {id:"AI·016", name:"Descript", cats:["Audio","Video"], desc:"Edits audio and video by editing a text transcript directly.", rating:4, featured:false, url:"https://www.descript.com", price:"Freemium", features:["teamCollab","freeTrial"]},
+  {id:"AI·017", name:"GitHub Copilot", cats:["Code"], desc:"AI pair programmer that autocompletes and explains code in-editor.", rating:5, featured:false, url:"https://github.com/features/copilot", price:"Paid", features:["api","enterprise"]},
+  {id:"AI·018", name:"Cursor", cats:["Code"], desc:"AI-native code editor built around chat, edits and codebase context.", rating:5, featured:false, url:"https://www.cursor.com", price:"Freemium", features:["freeTrial","api"]},
+  {id:"AI·019", name:"Replit", cats:["Code"], desc:"Browser-based coding environment with an AI agent that builds apps.", rating:4, featured:false, url:"https://replit.com", price:"Freemium", features:["freeTrial","teamCollab","mobileApp"]},
+  {id:"AI·020", name:"Notion AI", cats:["Productivity","Writing"], desc:"Writing and summarizing assistant built directly into Notion docs.", rating:4, featured:false, url:"https://www.notion.com/product/ai", price:"Paid", features:["teamCollab","mobileApp"]},
+  {id:"AI·021", name:"Otter.ai", cats:["Productivity"], desc:"Real-time meeting transcription with automatic summaries and action items.", rating:4, featured:false, url:"https://otter.ai", price:"Freemium", features:["mobileApp","freeTrial","teamCollab"]},
+  {id:"AI·022", name:"Canva Magic Studio", cats:["Design","Image"], desc:"AI design tools inside Canva: image generation, backgrounds, and layouts.", rating:4, featured:false, url:"https://www.canva.com/magic-studio", price:"Freemium", features:["mobileApp","teamCollab","freeTrial"]},
+  {id:"AI·023", name:"Figma AI", cats:["Design"], desc:"AI features inside Figma for generating and editing UI designs.", rating:3, featured:false, url:"https://www.figma.com", price:"Freemium", features:["teamCollab","freeTrial"]},
+  {id:"AI·024", name:"Uizard", cats:["Design"], desc:"Turns text prompts or sketches into editable app and web mockups.", rating:3, featured:false, url:"https://uizard.io", price:"Freemium", features:["freeTrial"]},
+  {id:"AI·025", name:"Luma AI", cats:["3D"], desc:"Generates 3D models and scenes from text prompts or photos.", rating:4, featured:false, url:"https://lumalabs.ai", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·026", name:"Spline AI", cats:["3D","Design"], desc:"AI-assisted 3D design tool for building web-ready interactive scenes.", rating:4, featured:false, url:"https://spline.design", price:"Freemium", features:["teamCollab","freeTrial","browserExt"]},
+  {id:"AI·027", name:"AIVA", cats:["Music"], desc:"AI composer that creates original instrumental music tracks.", rating:4, featured:false, url:"https://www.aiva.ai", price:"Freemium", features:["freeTrial"]},
+  {id:"AI·028", name:"Soundraw", cats:["Music"], desc:"Generates royalty-free background music customized by mood and length.", rating:3, featured:false, url:"https://soundraw.io", price:"Paid", features:["freeTrial"]},
+  {id:"AI·029", name:"AutoGPT", cats:["Agent"], desc:"Open-source autonomous agent that chains tasks toward a goal.", rating:3, featured:false, url:"https://github.com/Significant-Gravitas/AutoGPT", price:"Free", features:["api","noLogin","offline"]},
+  {id:"AI·030", name:"Zapier AI", cats:["Agent","Productivity"], desc:"AI-powered automation that connects apps and triggers workflows.", rating:4, featured:false, url:"https://zapier.com/ai", price:"Freemium", features:["api","teamCollab","freeTrial"]},
+  {id:"AI·031", name:"Devin", cats:["Agent","Code"], desc:"AI software engineer that plans and executes coding tasks autonomously.", rating:4, featured:false, url:"https://devin.ai", price:"Paid", features:["api","enterprise"]},
+  {id:"AI·032", name:"Grok", cats:["Assistant","Writing"], desc:"xAI's conversational assistant with real-time access to X and fast responses.", rating:4, featured:false, url:"https://grok.x.ai", price:"Freemium", features:["api","mobileApp","freeTrial"]},
+  {id:"AI·033", name:"Meta AI", cats:["Assistant"], desc:"Meta's AI assistant built into WhatsApp, Instagram and Facebook.", rating:3, featured:false, url:"https://www.meta.ai", price:"Free", features:["mobileApp","noLogin"]},
+  {id:"AI·034", name:"Writesonic", cats:["Writing"], desc:"AI content generator for blog posts, ads and SEO-optimized articles.", rating:3, featured:false, url:"https://writesonic.com", price:"Freemium", features:["api","freeTrial","teamCollab"]},
+  {id:"AI·035", name:"QuillBot", cats:["Writing"], desc:"AI paraphrasing, grammar and summarizing tool for clearer writing.", rating:3, featured:false, url:"https://quillbot.com", price:"Freemium", features:["browserExt","freeTrial","mobileApp"]},
+  {id:"AI·036", name:"DALL·E 3", cats:["Image"], desc:"OpenAI's text-to-image model, integrated directly into ChatGPT.", rating:4, featured:false, url:"https://openai.com/dall-e-3", price:"Paid", features:["api"]},
+  {id:"AI·037", name:"Leonardo AI", cats:["Image"], desc:"Text-to-image generator popular for game art and concept design.", rating:4, featured:false, url:"https://leonardo.ai", price:"Freemium", features:["api","freeTrial","mobileApp"]},
+  {id:"AI·038", name:"Stable Diffusion", cats:["Image"], desc:"Open-source text-to-image model that can run locally or in the cloud.", rating:4, featured:false, url:"https://stability.ai", price:"Free", features:["api","noLogin","offline"]},
+  {id:"AI·039", name:"Kling AI", cats:["Video"], desc:"Text-to-video model known for realistic motion and longer clips.", rating:4, featured:false, url:"https://klingai.com", price:"Freemium", features:["freeTrial","mobileApp"]},
+  {id:"AI·040", name:"Pika", cats:["Video"], desc:"AI video generator for quick text-to-video and image-to-video clips.", rating:3, featured:false, url:"https://pika.art", price:"Freemium", features:["freeTrial","mobileApp"]},
+  {id:"AI·041", name:"Murf AI", cats:["Audio"], desc:"Text-to-speech studio with lifelike voiceovers for videos and presentations.", rating:4, featured:false, url:"https://murf.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
+  {id:"AI·042", name:"Windsurf", cats:["Code"], desc:"AI-native code editor built around agentic, multi-file coding flows.", rating:4, featured:false, url:"https://windsurf.com", price:"Freemium", features:["freeTrial","api"]},
+  {id:"AI·043", name:"Bolt.new", cats:["Code"], desc:"Prompts full-stack web apps into existence directly in the browser.", rating:4, featured:false, url:"https://bolt.new", price:"Freemium", features:["noLogin","freeTrial"]},
+  {id:"AI·044", name:"Reclaim AI", cats:["Productivity"], desc:"AI scheduling assistant that auto-blocks time for tasks and habits.", rating:4, featured:false, url:"https://reclaim.ai", price:"Freemium", features:["api","teamCollab","freeTrial"]},
+  {id:"AI·045", name:"Framer AI", cats:["Design","Code"], desc:"Generates full, responsive websites from a single text prompt.", rating:4, featured:false, url:"https://www.framer.com/ai", price:"Freemium", features:["freeTrial","teamCollab"]},
+  {id:"AI·046", name:"Meshy", cats:["3D"], desc:"Text-to-3D and image-to-3D generator for game-ready assets.", rating:4, featured:false, url:"https://www.meshy.ai", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·047", name:"Udio", cats:["Music"], desc:"AI music generator that creates full songs with vocals from a prompt.", rating:4, featured:false, url:"https://www.udio.com", price:"Freemium", features:["freeTrial","mobileApp"]},
+  {id:"AI·048", name:"Manus", cats:["Agent"], desc:"General-purpose autonomous agent that plans and completes multi-step tasks.", rating:4, featured:false, url:"https://manus.im", price:"Paid", features:["api"]},
+  {id:"AI·049", name:"DeepL", cats:["Translation"], desc:"AI translator known for fluent, natural-sounding translations.", rating:5, featured:false, url:"https://www.deepl.com", price:"Freemium", features:["api","freeTrial","browserExt","mobileApp"]},
+  {id:"AI·050", name:"Lensa AI", cats:["Avatar","Image"], desc:"Turns selfies into stylized AI avatar portraits in dozens of art styles.", rating:4, featured:false, url:"https://prisma-ai.com/lensa", price:"Paid", features:["mobileApp","freeTrial"]},
+  {id:"AI·051", name:"D-ID", cats:["Avatar","Video"], desc:"Creates talking AI avatars and digital humans from a single photo.", rating:4, featured:false, url:"https://www.d-id.com", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·052", name:"Avaturn", cats:["Avatar","3D"], desc:"Generates realistic 3D avatars from selfies for games and virtual worlds.", rating:3, featured:false, url:"https://avaturn.me", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·053", name:"Boomy", cats:["Music"], desc:"Generates original songs in seconds and lets you release them to streaming platforms.", rating:4, featured:false, url:"https://boomy.com", price:"Freemium", features:["mobileApp","freeTrial"]},
+  {id:"AI·054", name:"Loudly", cats:["Music"], desc:"AI music generator for quickly creating royalty-free tracks and songs.", rating:3, featured:false, url:"https://www.loudly.com", price:"Freemium", features:["mobileApp","freeTrial"]},
+  {id:"AI·055", name:"Gamma", cats:["Presentation"], desc:"Generates polished slide decks, documents and webpages from a single prompt.", rating:4, featured:false, url:"https://gamma.app", price:"Freemium", features:["freeTrial","teamCollab"]},
+  {id:"AI·056", name:"Tome", cats:["Presentation"], desc:"AI-powered storytelling tool for building narrative slide decks.", rating:3, featured:false, url:"https://tome.app", price:"Freemium", features:["freeTrial","teamCollab"]},
+  {id:"AI·057", name:"Elicit", cats:["Research"], desc:"AI research assistant that finds, summarizes and extracts data from academic papers.", rating:4, featured:false, url:"https://elicit.com", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·058", name:"Consensus", cats:["Research"], desc:"Search engine that answers questions using findings from scientific research.", rating:4, featured:false, url:"https://consensus.app", price:"Freemium", features:["freeTrial","browserExt"]},
+  {id:"AI·059", name:"Julius AI", cats:["Data"], desc:"Chats with your spreadsheets and datasets to build charts and run analysis.", rating:4, featured:false, url:"https://julius.ai", price:"Freemium", features:["api","freeTrial"]},
+  {id:"AI·060", name:"Chatbase", cats:["Support","Agent"], desc:"Builds a custom AI chatbot trained on your own website and documents.", rating:4, featured:false, url:"https://www.chatbase.co", price:"Freemium", features:["api","teamCollab"]},
+  {id:"AI·061", name:"Intercom Fin", cats:["Support","Agent"], desc:"AI customer service agent that resolves support tickets automatically.", rating:4, featured:false, url:"https://www.intercom.com/fin", price:"Paid", features:["api","enterprise"]},
+  {id:"AI·062", name:"Surfer SEO", cats:["SEO"], desc:"Optimizes content for search rankings with AI-driven on-page recommendations.", rating:4, featured:false, url:"https://surferseo.com", price:"Paid", features:["api","teamCollab"]},
+  {id:"AI·063", name:"Fireflies.ai", cats:["Productivity"], desc:"Records, transcribes and summarizes meetings automatically.", rating:4, featured:false, url:"https://fireflies.ai", price:"Freemium", features:["api","freeTrial","teamCollab"]},
+  {id:"AI·064", name:"Claude Code", cats:["Code"], desc:"Anthropic's agentic coding tool that works in the terminal to write, edit and ship code.", rating:5, featured:false, url:"https://claude.com/product/claude-code", price:"Freemium", features:["api","freeTrial"]},
 ];
 
 const FEATURE_TAGS = ["api","freeTrial","noLogin","teamCollab","mobileApp","browserExt","offline","enterprise"];
@@ -1012,8 +1013,8 @@ function showToast(msg){
 function render(){
   const q = searchEl.value.trim().toLowerCase();
   let filtered = TOOLS.filter(t=>{
-    const matchesCat = activeCat === 'All' || t.cat === activeCat;
-    const matchesQ = !q || (t.name+' '+t.desc+' '+t.cat).toLowerCase().includes(q);
+    const matchesCat = activeCat === 'All' || t.cats.includes(activeCat);
+    const matchesQ = !q || (t.name+' '+t.desc+' '+t.cats.join(' ')).toLowerCase().includes(q);
     const matchesFav = !showFavoritesOnly || favorites.includes(t.id);
     const matchesFeatures = activeFeatures.size === 0 || t.features.some(f=>activeFeatures.has(f));
     return matchesCat && matchesQ && matchesFav && matchesFeatures;
@@ -1035,7 +1036,7 @@ function render(){
   grid.innerHTML = '';
   filtered.forEach((t, i)=>{
     const isFav = favorites.includes(t.id);
-    const color = catColor(t.cat);
+    const color = catColor(t.cats[0]);
     const initial = t.name.trim().charAt(0).toUpperCase();
     const card = document.createElement('div');
     card.className = prefersReducedMotion ? 'card' : 'card card-enter';
@@ -1055,7 +1056,7 @@ function render(){
       <p class="desc">${t.desc}</p>
       <div class="card-meta">
         <div class="tag-group">
-          <span class="tag cat-tag">${t.cat}</span>
+          ${t.cats.map(c=>`<span class="tag cat-tag" style="--cat-color:${catColor(c)}">${c}</span>`).join('')}
           <span class="tag price-${t.price.toLowerCase()}">${tr(priceKey(t.price))}</span>
         </div>
         <span class="stars">${stars(t.rating)}</span>
@@ -1063,7 +1064,7 @@ function render(){
       <a class="visit" href="${t.url}" target="_blank" rel="noopener">${tr('visitTool')}</a>
     `;
     card.querySelector('.fav-btn').addEventListener('click', ()=> toggleFavorite(t.id));
-    card.querySelector('.visit').addEventListener('click', ()=> trackEvent('visit_tool', { tool_name: t.name, category: t.cat }));
+    card.querySelector('.visit').addEventListener('click', ()=> trackEvent('visit_tool', { tool_name: t.name, category: t.cats.join(',') }));
     attachTilt(card);
     grid.appendChild(card);
     if(!prefersReducedMotion){
@@ -1073,16 +1074,16 @@ function render(){
 
   tableBody.innerHTML = filtered.map(t=>{
     const isFav = favorites.includes(t.id);
-    const color = catColor(t.cat);
+    const color = catColor(t.cats[0]);
     const initial = t.name.trim().charAt(0).toUpperCase();
     return `
       <tr style="--cat-color:${color}">
         <td><button class="fav-btn" data-id="${t.id}" aria-label="${isFav ? 'Remove from favorites' : 'Add to favorites'}" aria-pressed="${isFav}">${isFav ? '♥' : '♡'}</button></td>
         <td><div class="table-name"><span class="avatar avatar-sm">${initial}</span>${t.name}</div></td>
-        <td><span class="tag cat-tag">${t.cat}</span></td>
+        <td><div class="tag-group">${t.cats.map(c=>`<span class="tag cat-tag" style="--cat-color:${catColor(c)}">${c}</span>`).join('')}</div></td>
         <td><span class="tag price-${t.price.toLowerCase()}">${tr(priceKey(t.price))}</span></td>
         <td class="stars">${stars(t.rating)}</td>
-        <td><a class="visit visit-sm" href="${t.url}" target="_blank" rel="noopener" data-name="${t.name}" data-cat="${t.cat}">${tr('visitShort')}</a></td>
+        <td><a class="visit visit-sm" href="${t.url}" target="_blank" rel="noopener" data-name="${t.name}" data-cat="${t.cats.join(',')}">${tr('visitShort')}</a></td>
       </tr>
     `;
   }).join('');
@@ -1106,7 +1107,7 @@ function render(){
 }
 
 function buildChips(){
-  const cats = ['All', ...new Set(TOOLS.map(t=>t.cat))];
+  const cats = ['All', ...new Set(TOOLS.flatMap(t=>t.cats))];
   chipsEl.innerHTML = '';
   cats.forEach(c=>{
     const chip = document.createElement('button');
@@ -1241,7 +1242,7 @@ const submitForm = document.getElementById('submitForm');
 const submitCatSelect = document.getElementById('submitCat');
 
 function populateSubmitCats(){
-  const cats = [...new Set(TOOLS.map(t=>t.cat))];
+  const cats = [...new Set(TOOLS.flatMap(t=>t.cats))];
   submitCatSelect.innerHTML = cats.map(c=>`<option value="${c}">${c}</option>`).join('') + `<option value="Other">${tr('modalOther')}</option>`;
 }
 
@@ -1347,7 +1348,7 @@ featuredForm.addEventListener('submit', (e)=>{
       "item": {
         "@type": "SoftwareApplication",
         "name": t.name,
-        "applicationCategory": t.cat,
+        "applicationCategory": t.cats.join(', '),
         "description": t.desc,
         "url": t.url
       }
