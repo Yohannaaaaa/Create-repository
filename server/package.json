@@ -1,0 +1,16 @@
+{
+  "name": "ai-finder-featured-webhook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Receives PayPal IPN for AI Finder Featured payments and marks the paid tool as featured in index.html via the GitHub API.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
