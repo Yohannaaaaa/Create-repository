@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://create-repository-xelo.onrender.com/sitemap.xml
+Sitemap: https://ai-finder-69x8.onrender.com/sitemap.xml
